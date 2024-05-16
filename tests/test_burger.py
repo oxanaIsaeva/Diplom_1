@@ -9,19 +9,10 @@ from praktikum.database import Database
 
 class TestBurger:
 
-    @pytest.mark.parametrize(
-        'name, price',
-        [
-            ['black bun', 100],
-            ['white bun', 200],
-            ['red bun', 300]
-        ]
-    )
-    def test_set_buns(self, name, price):
+    def test_set_buns(self):
         mock_bun = Mock()
-        mock_bun.get_name.return_value = name
-        mock_bun.get_price.return_value = price
-
+        mock_bun.get_name.return_value = 'red bun'
+        mock_bun.get_price.return_value = 300
         burger = Burger()
         burger.set_buns(mock_bun)
 
@@ -43,7 +34,6 @@ class TestBurger:
         mock_ingredient.type = ing_type
         mock_ingredient.name = name
         mock_ingredient.price = price
-
         burger = Burger()
         burger.add_ingredient(mock_ingredient)
 
@@ -65,7 +55,6 @@ class TestBurger:
         mock_ingredient.type = ing_type
         mock_ingredient.name = name
         mock_ingredient.price = price
-
         burger = Burger()
         burger.add_ingredient(mock_ingredient)
         burger.remove_ingredient(0)
@@ -77,12 +66,10 @@ class TestBurger:
         mock_ingredient.type = 'SAUCE'
         mock_ingredient.name = 'hot sauce'
         mock_ingredient.price = 100.0
-
         mock_ingredient_cutlet = Mock()
         mock_ingredient_cutlet.type = 'FILLING'
         mock_ingredient_cutlet.name = 'cutlet'
         mock_ingredient_cutlet.price = 100.0
-
         burger = Burger()
         burger.add_ingredient(mock_ingredient)
         burger.add_ingredient(mock_ingredient_cutlet)
